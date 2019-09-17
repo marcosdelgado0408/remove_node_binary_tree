@@ -67,6 +67,7 @@ public class Node {
 
 
     public void remove(Node root, int key){
+
         Node temp  = null;
 
         // LEFT
@@ -132,9 +133,26 @@ public class Node {
             }
 
 
-
-
         }
+
+        else if(root.value == key){
+            if(root.right == null && root.left == null){
+                root = null;
+            }
+            else{
+
+                temp = root.right;
+                while(temp.hasleft()){ //  vai pegar o nó mais a esquerda
+                    temp = temp.left;
+                }
+
+                remove(root,temp.value); // removendo o nó mais a esquerda
+                root.value = temp.value; // mudando o valor do root
+
+            }
+        }
+
+
         else{
             remove(root.left, key);
             remove(root.right, key);
