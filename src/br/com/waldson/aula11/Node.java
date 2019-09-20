@@ -15,6 +15,7 @@ public class Node {
     public void setRight(Node right) { this.right = right; }
     public void setValue(int value) { this.value = value; }
 
+
     public Node(int value) {
         this.value = value;
     }
@@ -65,6 +66,8 @@ public class Node {
     }
 
 
+
+/*
 
     public void remove(Node root, int key){
 
@@ -169,10 +172,7 @@ public class Node {
 
 
 
-
-
-
-
+*/
 
 
 

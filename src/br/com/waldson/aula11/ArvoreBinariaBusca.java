@@ -28,14 +28,15 @@ public class ArvoreBinariaBusca {
     }
 
 
-    public void remove(int key){
+
+    public void remove(Node root, int key){
+
         Node temp  = null;
-        Node root = this.raiz;
 
         // LEFT
         if(root.getLeft().getValue() == key){
-            if(root.getLeft().getLeft() == null && root.getLeft().getRight() == null){
-                    root.setLeft(null); // caso seja um nó folha
+            if(root.getLeft().getLeft() == null && root.getLeft().getRight() == null){ // caso for um nó folha
+                root.setLeft(null); // caso seja um nó folha
             }
             else{
                 // caso possuir filho(s)
@@ -66,7 +67,7 @@ public class ArvoreBinariaBusca {
         // RIGHT
         else if (root.getRight().getValue() == key){
             if(root.getRight().getRight() == null && root.getRight().getLeft() == null){
-                    root.setRight(null); // caso seja um nó folha
+                root.setRight(null); // caso seja um nó folha
             }
 
             else{
@@ -95,20 +96,37 @@ public class ArvoreBinariaBusca {
             }
 
 
+        }
 
+        else if(root.getValue() == key){
+            if(root.getRight() == null && root.getLeft() == null){
+                root = null;
+            }
+            else{
 
+                temp = root.getRight();
+                while(temp.hasleft()){ //  vai pegar o nó mais a esquerda
+                    temp = temp.getLeft();
+                }
+
+                remove(root,temp.getValue()); //remove(root,temp.getValue()); // removendo o nó mais a esquerda
+                root.setValue(temp.getValue()); // mudando o valor do root
+
+            }
         }
 
 
-
-
-
-
-
-
+        else{
+           remove(root.getLeft(), key);
+           remove(root.getRight(), key);
+        }
 
 
     }
+
+
+
+
 
 
 
